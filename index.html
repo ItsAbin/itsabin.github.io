@@ -1,1 +1,330 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Under Construction</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href='data:image/svg+xml,
+    <svg xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 100">
+      <rect width="100" height="100" fill="black"/>
+      <text x="50%" y="56%"
+        dominant-baseline="middle"
+        text-anchor="middle"
+        font-size="78"
+        font-family="monospace"
+        font-weight="700"
+        fill="%23e62429">!</text>
+    </svg>'
+  />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0c; /* Deep metallic dark slate */
+      color: #ffffff;
+      font-family: "IBM Plex Mono", monospace;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      overflow: hidden;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #e62429; /* Marvel Red */
+    }
+
+    .message {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      line-height: 1.6;
+      max-width: 650px;
+      color: #999;
+    }
+
+    .highlight {
+      color: #f2bc18; /* Doomsday Accent Gold */
+    }
+
+    .progress-container {
+      font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+    }
+
+    #progress-text {
+      font-weight: 700;
+      color: #f2bc18;
+      margin-bottom: 8px;
+    }
+
+    #progress-bar {
+      white-space: nowrap;
+      overflow: hidden;
+      color: #e62429;
+    }
+
+    .qr-box {
+      margin-top: 10px;
+      border: 3px solid #e62429;
+      padding: 12px;
+      width: fit-content;
+      background: #ffffff;
+    }
+
+    .qr-box svg {
+      width: 180px;
+      height: 180px;
+      display: block;
+      shape-rendering: crispEdges;
+    }
+
+    .qr-box svg rect.bg { fill: #ffffff; }
+    .qr-box svg g.fg { fill: #0a0a0c; }
+
+    .question-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .question-mark {
+    font-size: clamp(10rem, 28vw, 22rem);
+    font-weight: 700;
+    color: #333;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.2s, transform 0.2s;
+    user-select: none;
+
+    animation: rotateMark 18s linear infinite;
+    }
+
+    @keyframes rotateMark {
+    from {
+        transform: rotate(0deg);
+     }
+
+    to {
+        transform: rotate(360deg);
+     }
+    }
+
+    .question-mark:hover {
+    color: #e62429;
+    }
+
+    .footer {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #444;
+    }
+
+    @media (max-width: 850px) {
+      .screen {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .content { align-items: center; }
+      .qr-box { margin-inline: auto; }
+    }
+
+    /* CRT scanline simulation */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.01),
+        rgba(255,255,255,0.01) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="screen">
+
+    <div class="content">
+      <h1 class="title">
+        SITE UNDER<br />
+        CONSTRUCTION
+      </h1>
+
+      <p class="message">
+        This portal has been cleared for timeline pruning. <br />
+        <span class="highlight">Will return</span> in <span class="highlight">Avengers: Doomsday</span>.
+      </p>
+
+      <div class="progress-container">
+        <div id="progress-text">LOADING DESTINY... 00.000000%</div>
+        <div id="progress-bar">[░░░░░░░░░░░░░░░░░░░░]</div>
+      </div>
+
+      <div class="qr-box">
+        <svg viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg">
+          <rect class="bg" width="29" height="29"/>
+          <g class="fg">
+            <path d="M0,0 h7 v7 h-7 z M1,1 v5 h5 v-5 z M2,2 h3 v3 h-3 z"/>
+            <path d="M22,0 h7 v7 h-7 z M23,1 v5 h5 v-5 z M24,2 h3 v3 h-3 z"/>
+            <path d="M0,22 h7 v7 h-7 z M1,23 v5 h5 v-5 z M2,24 h3 v3 h-3 z"/>
+            <path d="M22,22 h5 v5 h-5 z M23,23 v3 h3 v-3 z M24,24 h1 v1 h-1 z"/>
+            <path d="M6,8 h1 v1 h-1 z M6,10 h1 v1 h-1 z M6,12 h1 v1 h-1 z M6,14 h1 v1 h-1 z M6,16 h1 v1 h-1 z M6,18 h1 v1 h-1 z M6,20 h1 v1 h-1 z"/>
+            <path d="M8,6 h1 v1 h-1 z M10,6 h1 v1 h-1 z M12,6 h1 v1 h-1 z M14,6 h1 v1 h-1 z M16,6 h1 v1 h-1 z M18,6 h1 v1 h-1 z M20,6 h1 v1 h-1 z"/>
+            <path d="M9,0 h2 v1 h-2 z M13,0 h1 v2 h-1 z M16,0 h1 v1 h-1 z M18,0 h3 v1 h-3 z"/>
+            <path d="M8,1 h1 v3 h-1 z M11,1 h1 v1 h-1 z M15,1 h1 v1 h-1 z M21,1 h1 v1 h-1 z"/>
+            <path d="M10,2 h1 v1 h-1 z M12,2 h3 v1 h-3 z M16,2 h2 v1 h-2 z M20,2 h1 v1 h-1 z"/>
+            <path d="M9,3 h1 v2 h-1 z M11,4 h3 v1 h-3 z M16,3 h1 v1 h-1 z M18,3 h2 v1 h-2 z"/>
+            <path d="M8,5 h3 v1 h-3 z M12,5 h1 v1 h-1 z M14,4 h1 v2 h-1 z M17,5 h1 v1 h-1 z M19,5 h2 v1 h-2 z"/>
+            <path d="M12,7 h1 v1 h-1 z M15,7 h2 v1 h-2 z M19,7 h2 v1 h-2 z M23,7 h4 v1 h-4 z"/>
+            <path d="M0,8 h2 v1 h-2 z M3,8 h2 v1 h-2 z M8,8 h1 v1 h-1 z M10,8 h3 v1 h-3 z M14,8 h1 v2 h-1 z M17,8 h1 v1 h-1 z M20,8 h1 v1 h-1 z M22,8 h1 v2 h-1 z M25,8 h1 v1 h-1 z"/>
+            <path d="M2,9 h1 v2 h-1 z M5,9 h1 v1 h-1 z M7,9 h1 v1 h-1 z M9,9 h1 v1 h-1 z M11,9 h2 v1 h-2 z M16,9 h1 v1 h-1 z M18,9 h2 v1 h-2 z M21,9 h1 v1 h-1 z M24,9 h4 v1 h-4 z"/>
+            <path d="M0,10 h1 v1 h-1 z M3,10 h1 v1 h-1 z M8,10 h1 v2 h-1 z M10,10 h1 v1 h-1 z M12,10 h1 v1 h-1 z M15,10 h2 v1 h-2 z M19,10 h1 v2 h-1 z M27,10 h2 v1 h-2 z"/>
+            <path d="M1,11 h3 v1 h-3 z M5,11 h2 v1 h-2 z M9,11 h2 v1 h-2 z M13,11 h1 v1 h-1 z M15,11 h1 v1 h-1 z M17,11 h1 v1 h-1 z M21,11 h2 v1 h-2 z M24,11 h2 v1 h-2 z M28,11 h1 v1 h-1 z"/>
+            <path d="M0,12 h1 v1 h-1 z M2,12 h1 v2 h-1 z M4,12 h2 v1 h-2 z M10,12 h2 v1 h-2 z M13,12 h1 v1 h-1 z M16,12 h2 v1 h-2 z M20,12 h1 v1 h-1 z M23,12 h3 v1 h-3 z M27,12 h1 v1 h-1 z"/>
+            <path d="M1,13 h1 v1 h-1 z M5,13 h1 v1 h-1 z M7,13 h3 v1 h-3 z M11,13 h1 v1 h-1 z M14,13 h1 v1 h-1 z M18,13 h1 v1 h-1 z M21,13 h1 v1 h-1 z M25,13 h1 v1 h-1 z M28,13 h1 v1 h-1 z"/>
+            <path d="M0,14 h1 v1 h-1 z M3,14 h2 v1 h-2 z M8,14 h2 v1 h-2 z M11,14 h2 v1 h-2 z M15,14 h2 v1 h-2 z M19,14 h1 v1 h-1 z M22,14 h1 v1 h-1 z M24,14 h1 v1 h-1 z M26,14 h2 v1 h-2 z"/>
+            <path d="M2,15 h2 v1 h-2 z M5,15 h1 v1 h-1 z M7,15 h1 v1 h-1 z M9,15 h1 v2 h-1 z M12,15 h2 v1 h-2 z M16,15 h1 v1 h-1 z M18,15 h1 v1 h-1 z M20,15 h2 v1 h-2 z M23,15 h1 v1 h-1 z M25,15 h3 v1 h-3 z"/>
+            <path d="M0,16 h3 v1 h-3 z M4,16 h1 v1 h-1 z M6,16 h1 v1 h-1 z M10,16 h1 v1 h-1 z M13,16 h2 v1 h-2 z M17,16 h1 v1 h-1 z M22,16 h1 v1 h-1 z M24,16 h1 v1 h-1 z M28,16 h1 v1 h-1 z"/>
+            <path d="M1,17 h1 v1 h-1 z M3,17 h1 v1 h-1 z M5,17 h1 v1 h-1 z M8,17 h1 v1 h-1 z M11,17 h1 v1 h-1 z M14,17 h2 v1 h-2 z M18,17 h3 v1 h-3 z M23,17 h2 v1 h-2 z M26,17 h1 v1 h-1 z"/>
+            <path d="M0,18 h1 v1 h-1 z M2,18 h2 v1 h-2 z M6,18 h2 v1 h-2 z M9,18 h1 v1 h-1 z M12,18 h1 v1 h-1 z M16,18 h1 v1 h-1 z M20,18 h2 v1 h-2 z M25,18 h2 v1 h-2 z M28,18 h1 v1 h-1 z"/>
+            <path d="M1,19 h3 v1 h-3 z M5,19 h1 v1 h-1 z M9,19 h2 v1 h-2 z M13,19 h2 v1 h-2 z M17,19 h2 v1 h-2 z M21,19 h1 v1 h-1 z M23,19 h1 v1 h-1 z M26,19 h1 v1 h-1 z"/>
+            <path d="M0,20 h1 v1 h-1 z M3,20 h1 v1 h-1 z M5,20 h2 v1 h-2 z M8,20 h1 v1 h-1 z M10,20 h2 v1 h-2 z M15,20 h1 v1 h-1 z M18,20 h1 v1 h-1 z Integrator M20,20 h1 v1 h-1 z M24,20 h4 v1 h-4 z"/>
+            <path d="M2,21 h1 v1 h-1 z M4,21 h2 v1 h-2 z M9,21 h3 v1 h-3 z M13,21 h1 v1 h-1 z M16,21 h1 v1 h-1 z M19,21 h2 v1 h-2 z M22,21 h1 v1 h-1 z M27,21 h1 v1 h-1 z"/>
+            <path d="M8,22 h1 v1 h-1 z M11,22 h2 v1 h-2 z M14,22 h3 v1 h-3 z M18,22 h1 v1 h-1 z M20,22 h1 v1 h-1 z"/>
+            <path d="M9,23 h1 v1 h-1 z M12,23 h1 v2 h-1 z M15,23 h1 v1 h-1 z M17,23 h1 v1 h-1 z M20,23 h1 v1 h-1 z"/>
+            <path d="M8,24 h1 v1 h-1 z M10,24 h1 v1 h-1 z M14,24 h1 v1 h-1 z M16,24 h2 v1 h-2 z M19,24 h2 v1 h-2 z"/>
+            <path d="M9,25 h1 v1 h-1 z M11,25 h2 v1 h-2 z M15,25 h3 v1 h-3 z M19,25 h1 v1 h-1 z"/>
+            <path d="M8,26 h2 v1 h-2 z M11,26 h1 v1 h-1 z M13,26 h1 v1 h-1 z M16,26 h1 v1 h-1 z M18,26 h1 v1 h-1 z M20,26 h2 v1 h-2 z"/>
+            <path d="M9,27 h1 v1 h-1 z M11,27 h1 v1 h-1 z M14,27 h2 v1 h-2 z M17,27 h1 v1 h-1 z M19,27 h1 v1 h-1 z"/>
+            <path d="M8,28 h1 v1 h-1 z M10,28 h3 v1 h-3 z M15,28 h1 v1 h-1 z M18,28 h3 v1 h-3 z"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="footer">
+        Error Code: 0xREDCENTER_DOOM
+      </div>
+    </div>
+
+    <div class="question-side">
+      <a class="question-mark" href="https://youtu.be/dQw4w9WgXcQ" target="_blank" aria-label="Secret Link">?</a>
+    </div>
+
+  </div>
+
+<script>
+  const startTime = new Date('2025-12-18T00:00:00Z').getTime();
+
+  const targetTime = new Date('2026-12-18T00:00:00Z').getTime();
+
+  const textEl = document.getElementById('progress-text');
+
+  const barEl = document.getElementById('progress-bar');
+
+  function updateCountdown() {
+
+    const now = Date.now();
+    const remaining = targetTime - now;
+    const totalDuration = targetTime - startTime;
+    const elapsed = now - startTime;
+    if (remaining <= 0) {
+
+      textEl.textContent =
+        'DOOMSDAY HAS ARRIVED';
+
+      barEl.textContent =
+        '[████████████████████] 100.00%';
+
+      return;
+    }
+
+    const days = Math.floor(
+      remaining / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+      (remaining / (1000 * 60 * 60)) % 24
+    );
+
+    const minutes = Math.floor(
+      (remaining / (1000 * 60)) % 60
+    );
+
+    const seconds = Math.floor(
+      (remaining / 1000) % 60
+    );
+
+
+    const progress = (elapsed / totalDuration) * 100;
+
+    // Keep percentage between 0 and 100
+    const safeProgress = Math.min(
+      Math.max(progress, 0),100
+    );
+    const percent = safeProgress.toFixed(2);
+
+    // Build visual progress bar
+    const totalBlocks = 20;
+    const filledBlocks = Math.floor(
+      (safeProgress / 100) * totalBlocks
+    );
+    const visualBar =
+      '[' +
+      '█'.repeat(filledBlocks) +
+      '░'.repeat(totalBlocks - filledBlocks) +
+      `] ${percent}%`;
+
+    // Update countdown text
+
+    textEl.textContent =
+      `${days}D ` +
+      `${String(hours).padStart(2, '0')}H ` +
+      `${String(minutes).padStart(2, '0')}M ` +
+      `${String(seconds).padStart(2, '0')}S`;
+
+    // Update progress bar
+
+    barEl.textContent =
+      visualBar;
+  }
+
+  updateCountdown();
+
+  // Update every second
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
