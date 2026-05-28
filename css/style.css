@@ -1,0 +1,201 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0909;
+  color: #ffffff;
+  font-family: "IBM Plex Mono", monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  overflow: hidden;
+}
+
+.screen {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.95;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #e62429;
+
+  text-shadow:
+    0 0 10px rgba(255,0,0,0.6),
+    0 0 30px rgba(255,0,0,0.3);
+
+  margin-bottom: 24px;
+}
+
+.terminal {
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: #33c37b;
+  line-height: 2;
+}
+
+.terminal-line {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  opacity: 0;
+}
+
+.terminal-line.typed {
+  opacity: 1;
+  animation: typeIn var(--duration, 0.1s) steps(var(--chars, 30)) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes typeIn {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.message {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  line-height: 2;
+  max-width: 650px;
+  min-height: 2.5em;
+  color: #999;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+
+  transition: opacity 0.3s;
+}
+
+#typed-msg,
+.cursor {
+  display: inline;
+}
+
+#blink-cursor {
+  white-space: nowrap;
+}
+
+.highlight {
+  color: #f2bc18;
+}
+
+.cursor {
+  animation: blink 1s steps(1) infinite;
+  color: #ffcc00;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.progress-container {
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+  margin-top: 24px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.progress-container.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+#progress-text {
+  font-weight: 700;
+  color: #f2bc18;
+}
+
+.advice {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.sprite-side {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sprite-hint {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  user-select: none;
+  opacity: 1;
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: 6px;
+  color: #888;
+}
+
+.ironman-wrap {
+  animation: float 4s ease-in-out infinite;
+  filter:
+    drop-shadow(0 0 18px rgba(230,36,41,0.55))
+    drop-shadow(0 0 40px rgba(230,36,41,0.25));
+
+  cursor: pointer;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+.ironman-wrap:hover svg {
+  filter: brightness(1.3);
+}
+
+@media (max-width: 850px) {
+
+  .screen {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .content {
+    align-items: center;
+  }
+
+  .sprite-side svg {
+    width: 140px;
+    height: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}

@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Site Under Construction</title>
+  <title>Signal Lost</title>
 
+  <link rel="stylesheet" href="./css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
   <link
     rel="icon"
     type="image/svg+xml"
@@ -16,166 +18,18 @@
         font-size="78" font-family="monospace" font-weight="700" fill="%23e62429">!</text>
     </svg>'
   />
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background: #0a0a0c;
-      color: #ffffff;
-      font-family: "IBM Plex Mono", monospace;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      overflow: hidden;
-    }
-
-    .screen {
-      width: 100%;
-      max-width: 1100px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .title {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      line-height: 0.95;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #e62429;
-      text-shadow:
-        0 0 10px rgba(255,0,0,0.6),
-        0 0 30px rgba(255,0,0,0.3);
-      margin-bottom: 24px;
-    }
-
-    /* Terminal */
-    .terminal {
-      font-size: clamp(0.8rem, 1.5vw, 1rem);
-      color: #e62429;
-      line-height: 2.0;
-    }
-
-    .terminal-line {
-      display: block;
-      overflow: hidden;
-      white-space: nowrap;
-      width: 0;
-      opacity: 0;
-    }
-
-    .terminal-line.typed {
-      opacity: 1;
-      animation: typeIn var(--duration, 0.1s) steps(var(--chars, 30)) forwards;
-      animation-delay: var(--delay, 0s);
-    }
-
-    @keyframes typeIn {
-      from { width: 0; }
-      to   { width: 100%; }
-    }
-
-    .message {
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      line-height: 2;
-      max-width: 650px;
-      min-height: 2.5em;
-      color: #999;
-
-      white-space: normal;
-      overflow-wrap: break-word;
-    }
-
-    #typed-msg,
-    .cursor {
-      display: inline;
-    }
-
-    #blink-cursor {
-      white-space: nowrap;
-    }
-    .highlight { color: #f2bc18; }
-
-    .cursor {
-      animation: blink 1s steps(1) infinite;
-      color: #ffcc00;
-    }
-
-    @keyframes blink { 50% { opacity: 0; } }
-
-    /* Countdown — hidden until message done */
-    .progress-container {
-      font-size: clamp(0.9rem, 1.8vw, 1.2rem);
-      margin-top: 24px;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    .progress-container.visible {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    #progress-text {
-      font-weight: 700;
-      color: #f2bc18;
-    }
-
-    .advice {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      color: #444;
-    }
-
-    /* Right side — Iron Man sprite */
-    .sprite-side {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .ironman-wrap {
-      animation: float 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 18px rgba(230,36,41,0.55)) drop-shadow(0 0 40px rgba(230,36,41,0.25));
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-18px); }
-    }
-
-    .ironman-wrap:hover svg {
-      filter: brightness(1.3);
-    }
-
-    @media (max-width: 850px) {
-      .screen { grid-template-columns: 1fr; text-align: center; }
-      .content { align-items: center; }
-    }
-
-  </style>
 </head>
-<audio id="lion-audio" src="audio/lion.mp3"></audio>
+
 <body>
+
+  <audio id="lion-audio" src="audio/lion.mp3"></audio>
+
   <div class="screen">
 
     <div class="content">
+
       <h1 class="title">
-         SIGNAL LOST
+        SIGNAL LOST
       </h1>
 
       <div class="terminal" id="terminal">
@@ -183,8 +37,9 @@
         <span class="terminal-line" data-text="> verifying temporal checksum...">&gt; verifying temporal checksum...</span>
       </div>
 
-      <p class="message" id="message" style="visibility:hidden;">
-        <span id="typed-msg"></span><span class="cursor" id="blink-cursor" style="display:none;">█</span>
+      <p class="message" id="message" style="visibility:hidden; opacity:0;">
+        <span id="typed-msg"></span>
+        <span class="cursor" id="blink-cursor" style="display:none;">█</span>
       </p>
 
       <div class="progress-container" id="countdown-wrap">
@@ -194,223 +49,157 @@
       <div class="advice">
         Error Code: 0xREDCENTER_DOOM
       </div>
+
     </div>
 
-    <!-- Iron Man pixel sprite -->
     <div class="sprite-side">
-      <div class="ironman-wrap" onclick="playLion()">        <!-- Iron Man Mark III pixel art — 20×28 grid, 14px cells -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 392" width="180" height="200" shape-rendering="crispEdges">
-          <!-- Each row from top; R=red #e62429, G=gold #f2bc18, S=silver #aaaaaa, D=dark #1a1a1a, Y=yellow #ffe066, B=blue #1e3a8a, W=white #ffffff, _=transparent -->
-          <defs>
-            <style>
-              .R{fill:#e62429} .G{fill:#f2bc18} .S{fill:#aaaaaa}
-              .D{fill:#1a1a1a} .Y{fill:#ffe066} .B{fill:#1e3a8a}
-              .W{fill:#ffffff} .K{fill:#0a0a0c}
-            </style>
-          </defs>
-          <!-- Row 0: helmet top -->
-          <rect class="D" x="84" y="0" width="112" height="14"/>
-          <!-- Row 1 -->
-          <rect class="D" x="56" y="14" width="28" height="14"/>
-          <rect class="R" x="84" y="14" width="112" height="14"/>
-          <rect class="D" x="196" y="14" width="28" height="14"/>
-          <!-- Row 2 -->
-          <rect class="D" x="42" y="28" width="14" height="14"/>
-          <rect class="R" x="56" y="28" width="168" height="14"/>
-          <rect class="D" x="224" y="28" width="14" height="14"/>
-          <!-- Row 3 — faceplate line -->
-          <rect class="R" x="42" y="42" width="196" height="14"/>
-          <!-- Row 4 — eyes start -->
-          <rect class="R" x="42" y="56" width="56" height="14"/>
-          <rect class="Y" x="98" y="56" width="28" height="14"/>
-          <rect class="R" x="126" y="56" width="28" height="14"/>
-          <rect class="Y" x="154" y="56" width="28" height="14"/>
-          <rect class="R" x="182" y="56" width="56" height="14"/>
-          <!-- Row 5 -->
-          <rect class="R" x="42" y="70" width="56" height="14"/>
-          <rect class="Y" x="98" y="70" width="28" height="14"/>
-          <rect class="R" x="126" y="70" width="28" height="14"/>
-          <rect class="Y" x="154" y="70" width="28" height="14"/>
-          <rect class="R" x="182" y="70" width="56" height="14"/>
-          <!-- Row 6 — nose bridge -->
-          <rect class="R" x="42" y="84" width="196" height="14"/>
-          <!-- Row 7 — mouth slit -->
-          <rect class="R" x="42" y="98" width="42" height="14"/>
-          <rect class="G" x="84" y="98" width="112" height="14"/>
-          <rect class="R" x="196" y="98" width="42" height="14"/>
-          <!-- Row 8 -->
-          <rect class="R" x="42" y="112" width="196" height="14"/>
-          <!-- Row 9 — chin -->
-          <rect class="R" x="56" y="126" width="168" height="14"/>
-          <!-- Row 10 — neck -->
-          <rect class="D" x="84" y="140" width="112" height="14"/>
-          <!-- Row 11 — shoulder start -->
-          <rect class="R" x="0" y="154" width="56" height="14"/>
-          <rect class="G" x="56" y="154" width="28" height="14"/>
-          <rect class="R" x="84" y="154" width="112" height="14"/>
-          <rect class="G" x="196" y="154" width="28" height="14"/>
-          <rect class="R" x="224" y="154" width="56" height="14"/>
-          <!-- Row 12 -->
-          <rect class="R" x="0" y="168" width="56" height="14"/>
-          <rect class="R" x="56" y="168" width="168" height="14"/>
-          <rect class="R" x="224" y="168" width="56" height="14"/>
-          <!-- Row 13 — chest RT arc center -->
-          <rect class="R" x="0" y="182" width="42" height="14"/>
-          <rect class="R" x="42" y="182" width="196" height="14"/>
-          <rect class="R" x="238" y="182" width="42" height="14"/>
-          <!-- Row 14 — arc reactor -->
-          <rect class="R" x="0" y="196" width="42" height="14"/>
-          <rect class="R" x="42" y="196" width="70" height="14"/>
-          <rect class="Y" x="112" y="196" width="56" height="14"/>
-          <rect class="R" x="168" y="196" width="70" height="14"/>
-          <rect class="R" x="238" y="196" width="42" height="14"/>
-          <!-- Row 15 -->
-          <rect class="R" x="0" y="210" width="42" height="14"/>
-          <rect class="R" x="42" y="210" width="70" height="14"/>
-          <rect class="Y" x="112" y="210" width="14" height="14"/>
-          <rect class="W" x="126" y="210" width="28" height="14"/>
-          <rect class="Y" x="154" y="210" width="14" height="14"/>
-          <rect class="R" x="168" y="210" width="70" height="14"/>
-          <rect class="R" x="238" y="210" width="42" height="14"/>
-          <!-- Row 16 -->
-          <rect class="R" x="0" y="224" width="42" height="14"/>
-          <rect class="R" x="42" y="224" width="70" height="14"/>
-          <rect class="Y" x="112" y="224" width="56" height="14"/>
-          <rect class="R" x="168" y="224" width="70" height="14"/>
-          <rect class="R" x="238" y="224" width="42" height="14"/>
-          <!-- Row 17 — lower chest -->
-          <rect class="R" x="14" y="238" width="252" height="14"/>
-          <!-- Row 18 -->
-          <rect class="G" x="28" y="252" width="224" height="14"/>
-          <!-- Row 19 — ab start -->
-          <rect class="R" x="56" y="266" width="168" height="14"/>
-          <!-- Row 20 -->
-          <rect class="R" x="56" y="280" width="56" height="14"/>
-          <rect class="G" x="112" y="280" width="56" height="14"/>
-          <rect class="R" x="168" y="280" width="56" height="14"/>
-          <!-- Row 21 -->
-          <rect class="R" x="56" y="294" width="56" height="14"/>
-          <rect class="G" x="112" y="294" width="56" height="14"/>
-          <rect class="R" x="168" y="294" width="56" height="14"/>
-          <!-- Row 22 — hips -->
-          <rect class="R" x="42" y="308" width="196" height="14"/>
-          <!-- Row 23 — thigh start -->
-          <rect class="R" x="42" y="322" width="84" height="14"/>
-          <rect class="D" x="126" y="322" width="28" height="14"/>
-          <rect class="R" x="154" y="322" width="84" height="14"/>
-          <!-- Row 24 -->
-          <rect class="R" x="42" y="336" width="84" height="14"/>
-          <rect class="D" x="126" y="336" width="28" height="14"/>
-          <rect class="R" x="154" y="336" width="84" height="14"/>
-          <!-- Row 25 -->
-          <rect class="G" x="42" y="350" width="84" height="14"/>
-          <rect class="G" x="154" y="350" width="84" height="14"/>
-          <!-- Row 26 — knee -->
-          <rect class="R" x="42" y="364" width="84" height="14"/>
-          <rect class="R" x="154" y="364" width="84" height="14"/>
-          <!-- Row 27 — feet -->
-          <rect class="R" x="42" y="378" width="84" height="14"/>
-          <rect class="R" x="154" y="378" width="84" height="14"/>
-        </svg>
+
+      <div class="sprite-hint">
+        Click to Test
+        <span class="arrow">↘</span>
       </div>
+
+      <div class="ironman-wrap" onclick="playLion()">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 392" width="180" height="200" shape-rendering="crispEdges">
+
+      <defs>
+        <style>
+          .R{fill:#e62429}
+          .G{fill:#f2bc18}
+          .S{fill:#aaaaaa}
+          .D{fill:#1a1a1a}
+          .Y{fill:#ffe066}
+          .B{fill:#1e3a8a}
+          .W{fill:#ffffff}
+          .K{fill:#0a0a0c}
+        </style>
+      </defs>
+
+      <!-- Helmet -->
+      <rect class="D" x="84" y="0" width="112" height="14"/>
+      <rect class="D" x="56" y="14" width="28" height="14"/>
+      <rect class="R" x="84" y="14" width="112" height="14"/>
+      <rect class="D" x="196" y="14" width="28" height="14"/>
+
+      <rect class="D" x="42" y="28" width="14" height="14"/>
+      <rect class="R" x="56" y="28" width="168" height="14"/>
+      <rect class="D" x="224" y="28" width="14" height="14"/>
+
+      <rect class="R" x="42" y="42" width="196" height="14"/>
+
+      <!-- Eyes -->
+      <rect class="R" x="42" y="56" width="56" height="14"/>
+      <rect class="Y" x="98" y="56" width="28" height="14"/>
+      <rect class="R" x="126" y="56" width="28" height="14"/>
+      <rect class="Y" x="154" y="56" width="28" height="14"/>
+      <rect class="R" x="182" y="56" width="56" height="14"/>
+
+      <rect class="R" x="42" y="70" width="56" height="14"/>
+      <rect class="Y" x="98" y="70" width="28" height="14"/>
+      <rect class="R" x="126" y="70" width="28" height="14"/>
+      <rect class="Y" x="154" y="70" width="28" height="14"/>
+      <rect class="R" x="182" y="70" width="56" height="14"/>
+
+      <!-- Face -->
+      <rect class="R" x="42" y="84" width="196" height="14"/>
+
+      <rect class="R" x="42" y="98" width="42" height="14"/>
+      <rect class="G" x="84" y="98" width="112" height="14"/>
+      <rect class="R" x="196" y="98" width="42" height="14"/>
+
+      <rect class="R" x="42" y="112" width="196" height="14"/>
+      <rect class="R" x="56" y="126" width="168" height="14"/>
+
+      <!-- Neck -->
+      <rect class="D" x="84" y="140" width="112" height="14"/>
+
+      <!-- Shoulders -->
+      <rect class="R" x="0" y="154" width="56" height="14"/>
+      <rect class="G" x="56" y="154" width="28" height="14"/>
+      <rect class="R" x="84" y="154" width="112" height="14"/>
+      <rect class="G" x="196" y="154" width="28" height="14"/>
+      <rect class="R" x="224" y="154" width="56" height="14"/>
+
+      <rect class="R" x="0" y="168" width="56" height="14"/>
+      <rect class="R" x="56" y="168" width="168" height="14"/>
+      <rect class="R" x="224" y="168" width="56" height="14"/>
+
+      <!-- Chest -->
+      <rect class="R" x="0" y="182" width="42" height="14"/>
+      <rect class="R" x="42" y="182" width="196" height="14"/>
+      <rect class="R" x="238" y="182" width="42" height="14"/>
+
+      <!-- Arc Reactor -->
+      <rect class="R" x="0" y="196" width="42" height="14"/>
+      <rect class="R" x="42" y="196" width="70" height="14"/>
+      <rect class="Y" x="112" y="196" width="56" height="14"/>
+      <rect class="R" x="168" y="196" width="70" height="14"/>
+      <rect class="R" x="238" y="196" width="42" height="14"/>
+
+      <rect class="R" x="0" y="210" width="42" height="14"/>
+      <rect class="R" x="42" y="210" width="70" height="14"/>
+      <rect class="Y" x="112" y="210" width="14" height="14"/>
+      <rect class="W" x="126" y="210" width="28" height="14"/>
+      <rect class="Y" x="154" y="210" width="14" height="14"/>
+      <rect class="R" x="168" y="210" width="70" height="14"/>
+      <rect class="R" x="238" y="210" width="42" height="14"/>
+
+      <rect class="R" x="0" y="224" width="42" height="14"/>
+      <rect class="R" x="42" y="224" width="70" height="14"/>
+      <rect class="Y" x="112" y="224" width="56" height="14"/>
+      <rect class="R" x="168" y="224" width="70" height="14"/>
+      <rect class="R" x="238" y="224" width="42" height="14"/>
+
+      <!-- Waist -->
+      <rect class="R" x="14" y="238" width="252" height="14"/>
+      <rect class="G" x="28" y="252" width="224" height="14"/>
+
+      <!-- Abdomen -->
+      <rect class="R" x="56" y="266" width="168" height="14"/>
+
+      <rect class="R" x="56" y="280" width="56" height="14"/>
+      <rect class="G" x="112" y="280" width="56" height="14"/>
+      <rect class="R" x="168" y="280" width="56" height="14"/>
+
+      <rect class="R" x="56" y="294" width="56" height="14"/>
+      <rect class="G" x="112" y="294" width="56" height="14"/>
+      <rect class="R" x="168" y="294" width="56" height="14"/>
+
+      <!-- Hips -->
+      <rect class="R" x="42" y="308" width="196" height="14"/>
+
+      <!-- Legs -->
+      <rect class="R" x="42" y="322" width="84" height="14"/>
+      <rect class="D" x="126" y="322" width="28" height="14"/>
+      <rect class="R" x="154" y="322" width="84" height="14"/>
+
+      <rect class="R" x="42" y="336" width="84" height="14"/>
+      <rect class="D" x="126" y="336" width="28" height="14"/>
+      <rect class="R" x="154" y="336" width="84" height="14"/>
+
+      <rect class="G" x="42" y="350" width="84" height="14"/>
+      <rect class="G" x="154" y="350" width="84" height="14"/>
+
+      <!-- Knees -->
+      <rect class="R" x="42" y="364" width="84" height="14"/>
+      <rect class="R" x="154" y="364" width="84" height="14"/>
+
+      <!-- Feet -->
+      <rect class="R" x="42" y="378" width="84" height="14"/>
+      <rect class="R" x="154" y="378" width="84" height="14"/>
+
+    </svg>
+
+      </div>
+
     </div>
 
   </div>
 
-<script>
-  const msPerChar = 30;
-  const linePause = 120;
+  <script src="./js/script.js"></script>
+  
+  <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 
-  // --- Terminal lines ---
-  const lines = document.querySelectorAll('.terminal-line');
-  let cursor = 0;
-  lines.forEach((line) => {
-    const chars = line.dataset.text.length;
-    const duration = (chars * msPerChar) / 1000;
-    line.style.setProperty('--delay', (cursor / 1000) + 's');
-    line.style.setProperty('--duration', duration + 's');
-    line.style.setProperty('--chars', chars);
-    setTimeout(() => line.classList.add('typed'), cursor);
-    cursor += chars * msPerChar + linePause;
-  });
-
-  // --- Message typing ---
-  const msgEl     = document.getElementById('message');
-  const typedSpan = document.getElementById('typed-msg');
-  const blinkCur  = document.getElementById('blink-cursor');
-
-  const segments = [
-    { text: 'Expected ',       open: '<span class="highlight">', close: '</span>' },
-    { text: 'to return ',           open: '',                          close: ''        },
-    { text: 'in Avengers Doomsday', open: '<span class="highlight">', close: '</span>' },
-    { text: ' :)',      open: '<span style="color:#444">', close: '</span>' },
-  ];
-  const fullText = segments.map(s => s.text).join('');
-
-  function startMsgType() {
-    msgEl.style.visibility = 'visible';
-    blinkCur.style.display = 'inline';
-    let charIndex = 0;
-    const iv = setInterval(() => {
-      charIndex++;
-      let built = '', counted = 0;
-      for (const seg of segments) {
-        if (counted >= charIndex) break;
-        const take = Math.min(seg.text.length, charIndex - counted);
-        built += take === seg.text.length
-          ? seg.open + seg.text + seg.close
-          : seg.text.slice(0, take);
-        counted += seg.text.length;
-      }
-      typedSpan.innerHTML = built;
-      if (charIndex >= fullText.length) {
-        clearInterval(iv);
-        // Reveal countdown after message finishes
-        startCountdown();
-      }
-    }, msPerChar);
-  }
-
-  const lastLine = lines[lines.length - 1];
-
-  lastLine.addEventListener('animationend', () => {
-    startMsgType();
-  });
-
-  // --- Countdown (revealed after message) ---
-  const startTime  = new Date('2025-12-18T00:00:00Z').getTime();
-  const targetTime = new Date('2026-12-18T00:00:00Z').getTime();
-  const textEl     = document.getElementById('progress-text');
-  const wrap       = document.getElementById('countdown-wrap');
-
-  function updateCountdown() {
-    const now       = Date.now();
-    const remaining = targetTime - now;
-    if (remaining <= 0) {
-      textEl.textContent = 'DOOMSDAY HAS ARRIVED';
-      return;
-    }
-    const days    = Math.floor(remaining / 86400000);
-    const hours   = Math.floor((remaining / 3600000) % 24);
-    const minutes = Math.floor((remaining / 60000) % 60);
-    const seconds = Math.floor((remaining / 1000) % 60);
-    textEl.textContent =
-      `${days}D ${String(hours).padStart(2,'0')}H ` +
-      `${String(minutes).padStart(2,'0')}M ${String(seconds).padStart(2,'0')}S LEFT`;
-  }
-
-  function startCountdown() {
-    wrap.classList.add('visible');
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
-  function playLion() {
-    const audio = document.getElementById("lion-audio");
-    audio.currentTime = 0;
-    audio.play();
-}
-</script>
-<!-- 100% privacy-first analytics -->
-<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 </body>
 </html>
